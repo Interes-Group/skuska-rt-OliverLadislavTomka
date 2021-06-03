@@ -55,17 +55,43 @@ public class MyMouseListener implements MouseListener, MouseMotionListener {
     @Override
     public void mouseDragged(MouseEvent e) {
         int i;
-
-
-
-
-
-
         if (tree != null){
+            if (e.getX() - xpos > 0){
+                if (e.getY() - ypos > 0){
+                    i = porovnavanie(e.getX() - xpos, e.getY() - ypos);
+                    tree.setWidth(i);
+                    tree.setHeight(i);
+                }
+                if (e.getY() - ypos < 0){
+                    i = porovnavanie(e.getX() - xpos,  - e.getY() + ypos);
+                    tree.setWidth(i);
+                    tree.setHeight(-i);
+                }
+            }
+            if (e.getX() - xpos < 0){
+                if (e.getY() - ypos > 0){
+                    i = porovnavanie(- e.getX() + xpos, e.getY() - ypos);
+                    tree.setWidth(-i);
+                    tree.setHeight(i);
+                }
+                if (e.getY() - ypos < 0){
+                    i = porovnavanie(- e.getX() + xpos, - e.getY() + ypos);
+                    tree.setWidth(-i);
+                    tree.setHeight(-i);
+
+                }
+            }
+        }
+
+
+
+
+
+        /*if (tree != null){
             i = porovnavanie(e.getX() - xpos, e.getY() - ypos);
             tree.setWidth(i);
             tree.setHeight(i);
-        }
+        }*/
         malovanie.repaint();
         if (tree != null) tree.kresliTvar(malovanie.getGraphics());
 

@@ -38,6 +38,7 @@ public class MyButtonListener implements ActionListener {
                 break;
             case "COLOR":
                 config.setColor(farby.get(pocitadlo%3));
+                myJLabel.setBackground(farby.get(pocitadlo%3));
                 pocitadlo++;
                 break;
         }
