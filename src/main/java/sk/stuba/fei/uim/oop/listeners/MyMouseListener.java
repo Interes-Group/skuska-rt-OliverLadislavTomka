@@ -61,11 +61,11 @@ public class MyMouseListener implements MouseListener, MouseMotionListener {
 
 
 
-        /*if (tree != null){
+        if (tree != null){
             i = porovnavanie(e.getX() - xpos, e.getY() - ypos);
             tree.setWidth(i);
             tree.setHeight(i);
-        }*/
+        }
         malovanie.repaint();
         if (tree != null) tree.kresliTvar(malovanie.getGraphics());
 
