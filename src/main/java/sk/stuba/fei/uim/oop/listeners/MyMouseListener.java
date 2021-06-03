@@ -10,12 +10,13 @@ import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 
 public class MyMouseListener implements MouseListener, MouseMotionListener {
-    private int xpos;
-    private int ypos;
     private MyPaintJPanel malovanie;
     private Tree tree;
     private ArrayList<Tree> mojeObjekty;
     private Config config;
+    private Tree newTree;
+    private int dragX;
+    private int dragY;
 
     public MyMouseListener(MyPaintJPanel malovanie,ArrayList<Tree> mojeObjekty, Config config) {
         this.malovanie = malovanie;
@@ -31,10 +32,17 @@ public class MyMouseListener implements MouseListener, MouseMotionListener {
     @Override
     public void mousePressed(MouseEvent e) {
         if (config.getMod() == 1) {
-            xpos = e.getX();
-            ypos = e.getY();
+            int xpos = e.getX();
+            int ypos = e.getY();
             tree = new Tree(xpos, ypos, 1, 1, config.getColor());
             mojeObjekty.add(tree);
+        }
+        if (config.getMod() == 2) {
+            newTree = checkObject(e.getX(),e.getY(),mojeObjekty);
+            if (newTree != null){
+                dragX = e.getX()- newTree.getX();
+                dragY = e.getY()- newTree.getY();
+            }
         }
     }
 
@@ -54,6 +62,11 @@ public class MyMouseListener implements MouseListener, MouseMotionListener {
             }
             tree = null;
         }
+        if (config.getMod() == 2){
+            malovanie.repaint();
+            newTree = null;
+        }
+
     }
 
     @Override
@@ -76,12 +89,27 @@ public class MyMouseListener implements MouseListener, MouseMotionListener {
             malovanie.repaint();
             if (tree != null) tree.kresliTvar(malovanie.getGraphics());
         }
+        if (config.getMod() == 2){
+            if (newTree != null) {
+                newTree.setX(e.getX() - dragX);
+                newTree.setY(e.getY() - dragY);
+                malovanie.repaint();
+            }
+        }
 
     }
 
     @Override
     public void mouseMoved(MouseEvent e) {
 
+    }
+
+    private Tree checkObject(int x, int y, ArrayList<Tree> mojeObjekty){
+        for (Tree tree:mojeObjekty) {
+            if (x >= tree.getX() && y >= tree.getY() && x <= (tree.getX()+tree.getWidth()) && y <= (tree.getY() + tree.getHeight()))
+                return tree;
+        }
+        return null;
     }
 
 }
