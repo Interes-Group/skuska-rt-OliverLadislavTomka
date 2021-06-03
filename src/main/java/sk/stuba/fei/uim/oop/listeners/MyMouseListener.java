@@ -30,16 +30,30 @@ public class MyMouseListener implements MouseListener, MouseMotionListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        xpos = e.getX();
-        ypos = e.getY();
-        tree = new Tree(xpos, ypos, 1, 1, config.getColor());
-        mojeObjekty.add(tree);
+        if (config.getMod() == 1) {
+            xpos = e.getX();
+            ypos = e.getY();
+            tree = new Tree(xpos, ypos, 1, 1, config.getColor());
+            mojeObjekty.add(tree);
+        }
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        malovanie.repaint();
-        tree = null;
+        if (config.getMod() == 1) {
+            malovanie.repaint();
+            int x1 = tree.getX(), y1 = tree.getY(), x2 = tree.getWidth(), y2 = tree.getHeight();
+
+            if (tree.getWidth() < 0) {
+                tree.setX(x1 + x2);
+                tree.setWidth(-tree.getWidth());
+            }
+            if (tree.getHeight() < 0) {
+                tree.setY(y1 + y2);
+                tree.setHeight(-tree.getHeight());
+            }
+            tree = null;
+        }
     }
 
     @Override
@@ -54,45 +68,14 @@ public class MyMouseListener implements MouseListener, MouseMotionListener {
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        int i;
-        /*if (tree != null){
-            if (e.getX() - xpos > 0){
-                if (e.getY() - ypos > 0){
-                    i = porovnavanie(e.getX() - xpos, e.getY() - ypos);
-                    tree.setWidth(i);
-                    tree.setHeight(i);
-                }
-                if (e.getY() - ypos < 0){
-                    i = porovnavanie(e.getX() - xpos,  - e.getY() + ypos);
-                    tree.setWidth(i);
-                    tree.setHeight(-i);
-                }
+        if (config.getMod() == 1) {
+            if (tree != null) {
+                tree.setWidth(e.getX() - tree.getX());
+                tree.setHeight(e.getY() - tree.getY());
             }
-            if (e.getX() - xpos < 0){
-                if (e.getY() - ypos > 0){
-                    i = porovnavanie(- e.getX() + xpos, e.getY() - ypos);
-                    tree.setWidth(-i);
-                    tree.setHeight(i);
-                }
-                if (e.getY() - ypos < 0){
-                    i = porovnavanie(- e.getX() + xpos, - e.getY() + ypos);
-                    tree.setWidth(-i);
-                    tree.setHeight(-i);
-
-                }
-            }
-        }*/
-
-
-
-
-
-        if (tree != null){
-            tree.setWidth(e.getX()-tree.getX());
-            tree.setHeight(e.getY()-tree.getY());
+            malovanie.repaint();
+            if (tree != null) tree.kresliTvar(malovanie.getGraphics());
         }
-        malovanie.repaint();
-        if (tree != null) tree.kresliTvar(malovanie.getGraphics());
 
     }
 

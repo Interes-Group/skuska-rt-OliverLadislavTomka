@@ -1,13 +1,12 @@
 package sk.stuba.fei.uim.oop.components;
 
-import sk.stuba.fei.uim.oop.components.Config;
 
 import javax.swing.*;
 
 public class MyJLabel extends JLabel {
 
-    public MyJLabel(Config config) {
-        this.setText("PAINT");
+    public MyJLabel() {
+        this.setText("Click BUTTON");
         setOpaque(true);
     }
 }
