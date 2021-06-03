@@ -8,7 +8,7 @@ public class Program {
 
     public Program() {
         var config = new Config();
-        var myJLabel = new MyJLabel();
+        var myJLabel = new MyJLabel(config);
         var kreslenie = new MyPaintJPanel(config);
         var upperMenu = new TopJPanel(config,myJLabel);
         var frame = new MyJFrame();

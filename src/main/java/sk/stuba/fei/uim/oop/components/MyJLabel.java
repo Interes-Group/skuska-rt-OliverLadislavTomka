@@ -5,7 +5,8 @@ import javax.swing.*;
 
 public class MyJLabel extends JLabel {
 
-    public MyJLabel() {
+    public MyJLabel(Config config) {
+        setBackground(config.getColor());
         this.setText("Click BUTTON");
         setOpaque(true);
     }

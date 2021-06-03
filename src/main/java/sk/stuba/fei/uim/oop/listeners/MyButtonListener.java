@@ -29,22 +29,19 @@ public class MyButtonListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()){
             case "PAINT":
-                myJLabel.setOpaque(true);
                 myJLabel.setText("PAINT");
                 myJLabel.setBackground(config.getColor());
                 config.setMod(1);
                 break;
             case "DRAG":
-                myJLabel.setOpaque(false);
                 myJLabel.setText("DRAG");
                 config.setMod(2);
                 break;
             case "COLOR":
-                if (config.getMod() == 1) {
-                    config.setColor(farby.get(pocitadlo % 3));
-                    myJLabel.setBackground(farby.get(pocitadlo % 3));
-                    pocitadlo++;
-                }
+                config.setColor(farby.get(pocitadlo % 3));
+                myJLabel.setBackground(farby.get(pocitadlo % 3));
+                pocitadlo++;
+
                 break;
         }
 
