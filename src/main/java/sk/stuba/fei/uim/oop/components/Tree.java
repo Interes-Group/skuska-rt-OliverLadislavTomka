@@ -33,14 +33,6 @@ public class Tree {
         g.fillRect(x1 + x2/3,y1 + y2/3, x2/3,2*y2/3);
     }
 
-    public Color getColor() {
-        return color;
-    }
-
-    public void setColor(Color color) {
-        this.color = color;
-    }
-
     public int getX() {
         return x;
     }

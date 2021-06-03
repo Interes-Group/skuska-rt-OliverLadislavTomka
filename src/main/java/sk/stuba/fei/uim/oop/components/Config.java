@@ -35,9 +35,6 @@ public class Config {
         return farby;
     }
 
-    public void setFarby(ArrayList<Color> farby) {
-        this.farby = farby;
-    }
 
     private void initFarby(ArrayList<Color> farby){
         farby.add(Color.RED);

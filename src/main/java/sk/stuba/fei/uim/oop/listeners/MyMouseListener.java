@@ -105,11 +105,12 @@ public class MyMouseListener implements MouseListener, MouseMotionListener {
     }
 
     private Tree checkObject(int x, int y, ArrayList<Tree> mojeObjekty){
+        Tree tree1 = null;
         for (Tree tree:mojeObjekty) {
             if (x >= tree.getX() && y >= tree.getY() && x <= (tree.getX()+tree.getWidth()) && y <= (tree.getY() + tree.getHeight()))
-                return tree;
+                tree1=tree;
         }
-        return null;
+        return tree1;
     }
 
 }
