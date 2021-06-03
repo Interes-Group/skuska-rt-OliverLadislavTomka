@@ -7,7 +7,6 @@ import javax.swing.*;
 public class MyJLabel extends JLabel {
 
     public MyJLabel(Config config) {
-        this.setBackground(config.getColor());
         this.setText("PAINT");
         setOpaque(true);
     }

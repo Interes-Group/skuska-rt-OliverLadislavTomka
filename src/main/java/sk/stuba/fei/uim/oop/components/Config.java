@@ -9,7 +9,7 @@ public class Config {
     private ArrayList<Color> farby;
 
     public Config() {
-        this.mod = 1;
+        this.mod = 0;
         this.color = Color.BLUE;
         this.farby = new ArrayList<>();
         initFarby(this.farby);

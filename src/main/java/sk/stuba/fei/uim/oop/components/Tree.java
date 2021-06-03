@@ -20,17 +20,15 @@ public class Tree {
     public void kresliTvar(Graphics g) {
         g.setColor(color);
         int x1=x,y1=y,x2=width,y2=height;
-        if (width < 0){
-            x1=x+width;
-            x2=x1-width;
-        }
-        /*if (height < 0){
-            y1=y+height;
-            y2=y1-height;
-        }*/
-        /*g.fillOval(this.x,this.y,width,(height*2)/3);
-        g.fillRect(this.x+ width/3,this.y + height/3, width/3,2*height/3);*/
 
+        if (width < 0){
+            x1 = x + width;
+            x2 = -width;
+        }
+        if (height < 0){
+            y1 = y + height;
+            y2 = -height;
+        }
         g.fillOval(x1,y1,x2,(y2*2)/3);
         g.fillRect(x1 + x2/3,y1 + y2/3, x2/3,2*y2/3);
     }

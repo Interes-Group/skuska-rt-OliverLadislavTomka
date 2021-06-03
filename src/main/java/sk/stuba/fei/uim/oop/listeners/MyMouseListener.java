@@ -32,7 +32,7 @@ public class MyMouseListener implements MouseListener, MouseMotionListener {
     public void mousePressed(MouseEvent e) {
         xpos = e.getX();
         ypos = e.getY();
-        tree = new Tree(xpos, ypos, 0, 0, config.getColor());
+        tree = new Tree(xpos, ypos, 1, 1, config.getColor());
         mojeObjekty.add(tree);
     }
 
@@ -55,7 +55,7 @@ public class MyMouseListener implements MouseListener, MouseMotionListener {
     @Override
     public void mouseDragged(MouseEvent e) {
         int i;
-        if (tree != null){
+        /*if (tree != null){
             if (e.getX() - xpos > 0){
                 if (e.getY() - ypos > 0){
                     i = porovnavanie(e.getX() - xpos, e.getY() - ypos);
@@ -81,17 +81,16 @@ public class MyMouseListener implements MouseListener, MouseMotionListener {
 
                 }
             }
-        }
-
-
-
-
-
-        /*if (tree != null){
-            i = porovnavanie(e.getX() - xpos, e.getY() - ypos);
-            tree.setWidth(i);
-            tree.setHeight(i);
         }*/
+
+
+
+
+
+        if (tree != null){
+            tree.setWidth(e.getX()-tree.getX());
+            tree.setHeight(e.getY()-tree.getY());
+        }
         malovanie.repaint();
         if (tree != null) tree.kresliTvar(malovanie.getGraphics());
 
@@ -102,8 +101,4 @@ public class MyMouseListener implements MouseListener, MouseMotionListener {
 
     }
 
-    private int porovnavanie(int a, int b){
-        if (a < b) return a;
-        return b;
-    }
 }
