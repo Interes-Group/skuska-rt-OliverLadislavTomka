@@ -13,13 +13,14 @@ public class MyPaintJPanel extends JPanel {
         super();
         this.objectList = new ArrayList<>();
         MyMouseListener myMouseListener = new MyMouseListener(this,objectList,config);
+        addMouseListener(myMouseListener);
+        addMouseMotionListener(myMouseListener);
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         for (Tree tree:objectList){
-
             tree.kresliTvar(g);
         }
     }

@@ -30,12 +30,16 @@ public class MyMouseListener implements MouseListener, MouseMotionListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
-
+        xpos = e.getX();
+        ypos = e.getY();
+        tree = new Tree(xpos, ypos, 0, 0, config.getColor());
+        mojeObjekty.add(tree);
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-
+        malovanie.repaint();
+        tree = null;
     }
 
     @Override
@@ -50,11 +54,30 @@ public class MyMouseListener implements MouseListener, MouseMotionListener {
 
     @Override
     public void mouseDragged(MouseEvent e) {
+        int i;
+
+
+
+
+
+
+        /*if (tree != null){
+            i = porovnavanie(e.getX() - xpos, e.getY() - ypos);
+            tree.setWidth(i);
+            tree.setHeight(i);
+        }*/
+        malovanie.repaint();
+        if (tree != null) tree.kresliTvar(malovanie.getGraphics());
 
     }
 
     @Override
     public void mouseMoved(MouseEvent e) {
 
+    }
+
+    private int porovnavanie(int a, int b){
+        if (a < b) return a;
+        return b;
     }
 }
